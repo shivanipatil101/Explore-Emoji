@@ -22,14 +22,28 @@ function filterEmojis(category) {
 const searchInput = document.getElementById('search');
 
 searchInput.addEventListener('input', () => {
-  const query = searchInput.value.toLowerCase();
-  const filtered = emojiList.filter(emoji => 
-    emoji.description.toLowerCase().includes(query) || // Match description
-    emoji.aliases.some(alias => alias.toLowerCase().includes(query)) || // Match aliases
-    emoji.tags.some(tag => tag.toLowerCase().includes(query)) // Match tags
-  );
-  displayEmojis(filtered);
+  const query = searchInput.value.toLowerCase(); // Get the search query and convert it to lowercase
+
+  // Get the currently selected category
+  const activeCategoryButton = document.querySelector('.filter-btn.active');
+  const activeCategory = activeCategoryButton ? activeCategoryButton.dataset.category : 'all';
+
+  // Filter emojis based on both search query and category
+  const filtered = emojiList.filter(emoji => {
+    const matchesQuery =
+      emoji.description.toLowerCase().includes(query) || // Match the query with the description
+      emoji.aliases.some(alias => alias.toLowerCase().includes(query)) || // Match with aliases
+      emoji.tags.some(tag => tag.toLowerCase().includes(query)); // Match with tags
+
+    const matchesCategory =
+      activeCategory === 'all' || emoji.category.toLowerCase().includes(activeCategory.toLowerCase()); // Match the selected category
+
+    return matchesQuery && matchesCategory; // Both conditions must be true
+  });
+
+  displayEmojis(filtered); // Display emojis that match the query and category
 });
+
 
 document.addEventListener('DOMContentLoaded', () => {
   fetch('https://akhil-06.github.io/emoji_project/emojiList.js')
