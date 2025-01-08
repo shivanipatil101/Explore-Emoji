@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Explore Emoji</title>
+    <style>
+      * {
+        margin: 0px;
+        padding: 0px;
+      }
+      body {
+        background-color: #ffdfbb;
+      }
+      h1 {
+        text-align: center;
+        margin-top: 3px;
+        font-size: 50px;
+      }
+      .navbar {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+      }
+      .filter-emogi {
+        display: flex;
+        gap: 10px;
+        margin-top: 10px;
+      }
+      .filter-btn {
+        padding: 10px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        background-color: #fdbb8f;
+        border: none;
+        box-shadow: 2px 2px 2px 2px;
+      }
+      .filter-btn:hover {
+        background-color: #f69d77;
+      }
+      input[type="text"] {
+        width: 200px;
+        margin-right: 10px;
+        padding: 5px;
+        border-radius: 2px;
+      }
+      .emoji-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+        gap: 10px;
+        margin: 20px;
+        padding: 10px;
+      }
+      .emoji-item {
+        text-align: center;
+        font-size: 35px;
+        transition: transform 0.2s;
+      }
+      .emoji-item:hover {
+        transform: scale(1.8);
+        cursor: pointer;
+        background-color: blueviolet;
+        box-shadow: 0px 5px 5px #000;
+        border-radius: 3px;
+      }
+      .filter-btn.active {
+        background-color: #4caf50;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Emojee - Emoji 🔍 Application</h1>
+    <br />
+    <div class="navbar">
+      <div class="filter-emogi">
+        <button class="filter-btn" data-category="all">All</button>
+        <button class="filter-btn" data-category="Smileys & Emotion">
+          Smileys & Emotion
+        </button>
+        <button class="filter-btn" data-category="Animals & Nature">
+          Animals & Nature
+        </button>
+        <button class="filter-btn" data-category="Food & Drink">
+          Food & Drink
+        </button>
+      </div>
+      <input
+        type="text"
+        name="search"
+        id="search"
+        placeholder="Search Emojiee Here"
+      />
+    </div>
+    <div class="emoji-container" id="emojiContainer">
+      <!-- Emoji items will be populated dynamically -->
+    </div>
+  </body>
+  <script src="./randomemoji.js"></script>
+  <script src="./data.js"></script>
+  <script src="./script.js"></script>
+</html>
